@@ -1,0 +1,41 @@
+#include "robot-config.h"
+          
+
+int main() {
+    
+    Brain.Screen.setFillColor(color::green);
+    
+    while(1){
+    
+    //Drive Train Left
+    if(Controller1.Axis3.value()){
+        Left.spin(vex::directionType::fwd, Controller1.Axis3.value(), vex::velocityUnits::pct);
+    }
+    
+    if(Controller1.Axis2.value()){
+        Right.spin(vex::directionType::fwd, Controller1.Axis2.value(), vex::velocityUnits::pct);
+    }
+    //Lift 1 and 2
+    if(Controller2.Axis3.value()){
+        Lift1.spin(vex::directionType::fwd, Controller2.Axis3.value(), vex::velocityUnits::pct);
+        Lift2.spin(vex::directionType::fwd, Controller2.Axis3.value(), vex::velocityUnits::pct);
+    }
+    //Extend Claw
+   // if(Controller2.ButtonDown.pressing()){
+     //   ClawPivot.rotateFor(90,vex::rotationUnits::deg, 20);
+    //}
+    //Rotate Claw 90 degrees
+    //if(Controller2.ButtonUp.pressing()){
+      //  ClawPivot.rotateFor(90,vex::rotationUnits::deg, 20);
+    //}
+    //Opens claw
+    if(Controller2.ButtonL1.pressing()){
+        ClawOpen.rotateFor(180,vex::rotationUnits::deg,20);
+    }
+    //Close Claw
+    if(Controller2.ButtonR1.pressing()){
+        ClawOpen.rotateFor(-180,vex::rotationUnits::deg,20);
+    }
+     
+    }
+}
